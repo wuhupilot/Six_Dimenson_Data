@@ -1,0 +1,852 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Data_SolveClass</class>
+ <widget class="QMainWindow" name="Data_SolveClass">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1200</width>
+    <height>800</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>数据处理工具 - Data Processor</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QVBoxLayout" name="verticalLayout_2">
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QPushButton" name="btnLoadData">
+        <property name="minimumSize">
+         <size>
+          <width>120</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>加载数据文件</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btnProcessData">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>120</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>处理数据</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btnExportData">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>120</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>导出结果</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btnClearData">
+        <property name="minimumSize">
+         <size>
+          <width>120</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>清空数据</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QLabel" name="lblStatus">
+        <property name="minimumSize">
+         <size>
+          <width>200</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>准备就绪</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <widget class="QGroupBox" name="groupBoxChannel">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>70</height>
+       </size>
+      </property>
+      <property name="title">
+       <string>通道选择</string>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_2">
+       <item>
+        <widget class="QRadioButton" name="radioFx">
+         <property name="text">
+          <string>Fx</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="radioFy">
+         <property name="text">
+          <string>Fy</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="radioFz">
+         <property name="text">
+          <string>Fz</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="radioMx">
+         <property name="text">
+          <string>Mx</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="radioMy">
+         <property name="text">
+          <string>My</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="radioMz">
+         <property name="text">
+          <string>Mz</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QGroupBox" name="groupBoxRange">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>100</height>
+       </size>
+      </property>
+      <property name="title">
+       <string>各通道量程设置</string>
+      </property>
+      <layout class="QGridLayout" name="gridLayout">
+       <item row="0" column="0">
+        <widget class="QLabel" name="labelFx">
+         <property name="text">
+          <string>Fx:</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QLabel" name="displayRangeFx">
+         <property name="styleSheet">
+          <string notr="true">&lt;property name=&quot;styleSheet&quot;&gt;
+  &lt;string&gt;
+    QLabel {
+        background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #34495e, stop:1 #2c3e50);  /* 背景渐变色 */
+        color: #00d2ff;  /* 文本颜色 */
+        font-family: Consolas, Courier New, monospace;  /* 字体 */
+        font-size: 18px;  /* 字体大小 */
+        font-weight: bold;  /* 字体加粗 */
+        border: 2px solid #16a085;  /* 边框颜色 */
+        border-radius: 10px;  /* 圆角边框 */
+        padding: 12px;  /* 内边距 */
+        min-width: 120px;  /* 最小宽度 */
+        min-height: 50px;  /* 最小高度 */
+        text-align: center;  /* 文本水平居中 */
+        vertical-align: middle;  /* 垂直居中 */
+        box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);  /* 增加阴影效果 */
+    }
+    
+    QLabel:hover {
+        background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #1abc9c, stop:1 #16a085);  /* 悬浮时背景渐变 */
+        border-color: #1abc9c;  /* 悬浮时边框颜色 */
+    }
+  &lt;/string&gt;
+&lt;/property&gt;
+</string>
+         </property>
+         <property name="text">
+          <string>1000.0</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="2">
+        <widget class="QLabel" name="labelFy">
+         <property name="text">
+          <string>Fy:</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="3">
+        <widget class="QLabel" name="displayRangeFy">
+         <property name="styleSheet">
+          <string notr="true">&lt;property name=&quot;styleSheet&quot;&gt;
+  &lt;string&gt;
+    QLabel {
+        background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #34495e, stop:1 #2c3e50);  /* 背景渐变色 */
+        color: #00d2ff;  /* 文本颜色 */
+        font-family: Consolas, Courier New, monospace;  /* 字体 */
+        font-size: 18px;  /* 字体大小 */
+        font-weight: bold;  /* 字体加粗 */
+        border: 2px solid #16a085;  /* 边框颜色 */
+        border-radius: 10px;  /* 圆角边框 */
+        padding: 12px;  /* 内边距 */
+        min-width: 120px;  /* 最小宽度 */
+        min-height: 50px;  /* 最小高度 */
+        text-align: center;  /* 文本水平居中 */
+        vertical-align: middle;  /* 垂直居中 */
+        box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);  /* 增加阴影效果 */
+    }
+    
+    QLabel:hover {
+        background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #1abc9c, stop:1 #16a085);  /* 悬浮时背景渐变 */
+        border-color: #1abc9c;  /* 悬浮时边框颜色 */
+    }
+  &lt;/string&gt;
+&lt;/property&gt;
+</string>
+         </property>
+         <property name="text">
+          <string>1000.0</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="4">
+        <widget class="QLabel" name="labelFz">
+         <property name="text">
+          <string>Fz:</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="5">
+        <widget class="QLabel" name="displayRangeFz">
+         <property name="styleSheet">
+          <string notr="true">&lt;property name=&quot;styleSheet&quot;&gt;
+  &lt;string&gt;
+    QLabel {
+        background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #34495e, stop:1 #2c3e50);  /* 背景渐变色 */
+        color: #00d2ff;  /* 文本颜色 */
+        font-family: Consolas, Courier New, monospace;  /* 字体 */
+        font-size: 18px;  /* 字体大小 */
+        font-weight: bold;  /* 字体加粗 */
+        border: 2px solid #16a085;  /* 边框颜色 */
+        border-radius: 10px;  /* 圆角边框 */
+        padding: 12px;  /* 内边距 */
+        min-width: 120px;  /* 最小宽度 */
+        min-height: 50px;  /* 最小高度 */
+        text-align: center;  /* 文本水平居中 */
+        vertical-align: middle;  /* 垂直居中 */
+        box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);  /* 增加阴影效果 */
+    }
+    
+    QLabel:hover {
+        background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #1abc9c, stop:1 #16a085);  /* 悬浮时背景渐变 */
+        border-color: #1abc9c;  /* 悬浮时边框颜色 */
+    }
+  &lt;/string&gt;
+&lt;/property&gt;
+</string>
+         </property>
+         <property name="text">
+          <string>1500.0</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="labelMx">
+         <property name="text">
+          <string>Mx:</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QLabel" name="displayRangeMx">
+         <property name="styleSheet">
+          <string notr="true">&lt;property name=&quot;styleSheet&quot;&gt;
+  &lt;string&gt;
+    QLabel {
+        background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #34495e, stop:1 #2c3e50);  /* 背景渐变色 */
+        color: #00d2ff;  /* 文本颜色 */
+        font-family: Consolas, Courier New, monospace;  /* 字体 */
+        font-size: 18px;  /* 字体大小 */
+        font-weight: bold;  /* 字体加粗 */
+        border: 2px solid #16a085;  /* 边框颜色 */
+        border-radius: 10px;  /* 圆角边框 */
+        padding: 12px;  /* 内边距 */
+        min-width: 120px;  /* 最小宽度 */
+        min-height: 50px;  /* 最小高度 */
+        text-align: center;  /* 文本水平居中 */
+        vertical-align: middle;  /* 垂直居中 */
+        box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);  /* 增加阴影效果 */
+    }
+    
+    QLabel:hover {
+        background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #1abc9c, stop:1 #16a085);  /* 悬浮时背景渐变 */
+        border-color: #1abc9c;  /* 悬浮时边框颜色 */
+    }
+  &lt;/string&gt;
+&lt;/property&gt;
+</string>
+         </property>
+         <property name="text">
+          <string>50.0</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2">
+        <widget class="QLabel" name="labelMy">
+         <property name="text">
+          <string>My:</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="3">
+        <widget class="QLabel" name="displayRangeMy">
+         <property name="styleSheet">
+          <string notr="true">&lt;property name=&quot;styleSheet&quot;&gt;
+  &lt;string&gt;
+    QLabel {
+        background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #34495e, stop:1 #2c3e50);  /* 背景渐变色 */
+        color: #00d2ff;  /* 文本颜色 */
+        font-family: Consolas, Courier New, monospace;  /* 字体 */
+        font-size: 18px;  /* 字体大小 */
+        font-weight: bold;  /* 字体加粗 */
+        border: 2px solid #16a085;  /* 边框颜色 */
+        border-radius: 10px;  /* 圆角边框 */
+        padding: 12px;  /* 内边距 */
+        min-width: 120px;  /* 最小宽度 */
+        min-height: 50px;  /* 最小高度 */
+        text-align: center;  /* 文本水平居中 */
+        vertical-align: middle;  /* 垂直居中 */
+        box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);  /* 增加阴影效果 */
+    }
+    
+    QLabel:hover {
+        background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #1abc9c, stop:1 #16a085);  /* 悬浮时背景渐变 */
+        border-color: #1abc9c;  /* 悬浮时边框颜色 */
+    }
+  &lt;/string&gt;
+&lt;/property&gt;
+</string>
+         </property>
+         <property name="text">
+          <string>50.0</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="4">
+        <widget class="QLabel" name="labelMz">
+         <property name="text">
+          <string>Mz:</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="5">
+        <widget class="QLabel" name="displayRangeMz">
+         <property name="styleSheet">
+          <string notr="true">&lt;property name=&quot;styleSheet&quot;&gt;
+  &lt;string&gt;
+    QLabel {
+        background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #34495e, stop:1 #2c3e50);  /* 背景渐变色 */
+        color: #00d2ff;  /* 文本颜色 */
+        font-family: Consolas, Courier New, monospace;  /* 字体 */
+        font-size: 18px;  /* 字体大小 */
+        font-weight: bold;  /* 字体加粗 */
+        border: 2px solid #16a085;  /* 边框颜色 */
+        border-radius: 10px;  /* 圆角边框 */
+        padding: 12px;  /* 内边距 */
+        min-width: 120px;  /* 最小宽度 */
+        min-height: 50px;  /* 最小高度 */
+        text-align: center;  /* 文本水平居中 */
+        vertical-align: middle;  /* 垂直居中 */
+        box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);  /* 增加阴影效果 */
+    }
+    
+    QLabel:hover {
+        background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #1abc9c, stop:1 #16a085);  /* 悬浮时背景渐变 */
+        border-color: #1abc9c;  /* 悬浮时边框颜色 */
+    }
+  &lt;/string&gt;
+&lt;/property&gt;
+</string>
+         </property>
+         <property name="text">
+          <string>50.0</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="6" rowspan="2">
+        <widget class="QPushButton" name="btnSetRange">
+         <property name="minimumSize">
+          <size>
+           <width>100</width>
+           <height>60</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>设置量程</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="currentIndex">
+       <number>2</number>
+      </property>
+      <widget class="QWidget" name="tabOriginalData">
+       <attribute name="title">
+        <string>原始数据</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout">
+        <item>
+         <widget class="QTableWidget" name="tableOriginalData">
+          <property name="alternatingRowColors">
+           <bool>true</bool>
+          </property>
+          <property name="selectionBehavior">
+           <enum>QAbstractItemView::SelectRows</enum>
+          </property>
+          <property name="gridStyle">
+           <enum>Qt::SolidLine</enum>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tabProcessedData">
+       <attribute name="title">
+        <string>重复性误差</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_3">
+        <item>
+         <widget class="QTableWidget" name="tableProcessedData">
+          <property name="alternatingRowColors">
+           <bool>true</bool>
+          </property>
+          <property name="selectionBehavior">
+           <enum>QAbstractItemView::SelectRows</enum>
+          </property>
+          <property name="gridStyle">
+           <enum>Qt::SolidLine</enum>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tabLinearityData">
+       <attribute name="title">
+        <string>线性度</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_5">
+        <item>
+         <widget class="QTableWidget" name="tableLinearityData">
+          <property name="alternatingRowColors">
+           <bool>true</bool>
+          </property>
+          <property name="selectionBehavior">
+           <enum>QAbstractItemView::SelectRows</enum>
+          </property>
+          <property name="gridStyle">
+           <enum>Qt::SolidLine</enum>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tabStatistics">
+       <attribute name="title">
+        <string>统计信息</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_4">
+        <item>
+         <widget class="QTextEdit" name="textStatistics">
+          <property name="readOnly">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tabDecouplingMatrix">
+       <attribute name="title">
+        <string>解耦矩阵</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_6">
+        <item>
+         <widget class="QLabel" name="labelFirstMatrix">
+          <property name="font">
+           <font>
+            <pointsize>10</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>第一矩阵 (解耦矩阵)</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QTableWidget" name="tableDecouplingMatrix">
+          <property name="alternatingRowColors">
+           <bool>true</bool>
+          </property>
+          <property name="selectionBehavior">
+           <enum>QAbstractItemView::SelectRows</enum>
+          </property>
+          <property name="gridStyle">
+           <enum>Qt::SolidLine</enum>
+          </property>
+          <property name="rowCount">
+           <number>6</number>
+          </property>
+          <property name="columnCount">
+           <number>6</number>
+          </property>
+          <row/>
+          <row/>
+          <row/>
+          <row/>
+          <row/>
+          <row/>
+          <column/>
+          <column/>
+          <column/>
+          <column/>
+          <column/>
+          <column/>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="labelSecondMatrix">
+          <property name="font">
+           <font>
+            <pointsize>10</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>第二矩阵</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QTableWidget" name="tableSecondMatrix">
+          <property name="alternatingRowColors">
+           <bool>true</bool>
+          </property>
+          <property name="selectionBehavior">
+           <enum>QAbstractItemView::SelectRows</enum>
+          </property>
+          <property name="gridStyle">
+           <enum>Qt::SolidLine</enum>
+          </property>
+          <property name="rowCount">
+           <number>6</number>
+          </property>
+          <property name="columnCount">
+           <number>6</number>
+          </property>
+          <row/>
+          <row/>
+          <row/>
+          <row/>
+          <row/>
+          <row/>
+          <column/>
+          <column/>
+          <column/>
+          <column/>
+          <column/>
+          <column/>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="labelThirdMatrix">
+          <property name="font">
+           <font>
+            <pointsize>10</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>第三矩阵</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QTableWidget" name="tableThirdMatrix">
+          <property name="alternatingRowColors">
+           <bool>true</bool>
+          </property>
+          <property name="selectionBehavior">
+           <enum>QAbstractItemView::SelectRows</enum>
+          </property>
+          <property name="gridStyle">
+           <enum>Qt::SolidLine</enum>
+          </property>
+          <property name="rowCount">
+           <number>6</number>
+          </property>
+          <property name="columnCount">
+           <number>6</number>
+          </property>
+          <row/>
+          <row/>
+          <row/>
+          <row/>
+          <row/>
+          <row/>
+          <column/>
+          <column/>
+          <column/>
+          <column/>
+          <column/>
+          <column/>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tabDecoupledData">
+       <attribute name="title">
+        <string>解耦后数据</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_7">
+        <item>
+         <widget class="QTableWidget" name="tableDecoupledData">
+          <property name="alternatingRowColors">
+           <bool>true</bool>
+          </property>
+          <property name="selectionBehavior">
+           <enum>QAbstractItemView::SelectRows</enum>
+          </property>
+          <property name="gridStyle">
+           <enum>Qt::SolidLine</enum>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tabErrorAnalysis">
+       <attribute name="title">
+        <string>误差分析(原始)</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_8">
+        <item>
+         <widget class="QTableWidget" name="tableErrorAnalysis">
+          <property name="alternatingRowColors">
+           <bool>true</bool>
+          </property>
+          <property name="selectionBehavior">
+           <enum>QAbstractItemView::SelectRows</enum>
+          </property>
+          <property name="gridStyle">
+           <enum>Qt::SolidLine</enum>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tabNormalizedError">
+       <attribute name="title">
+        <string>归一化平方误差</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_9">
+        <item>
+         <widget class="QTableWidget" name="tableNormalizedError">
+          <property name="alternatingRowColors">
+           <bool>true</bool>
+          </property>
+          <property name="selectionBehavior">
+           <enum>QAbstractItemView::SelectRows</enum>
+          </property>
+          <property name="gridStyle">
+           <enum>Qt::SolidLine</enum>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tabChannelStatistics">
+       <attribute name="title">
+        <string>通道统计值</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_10">
+        <item>
+         <widget class="QTableWidget" name="tableChannelStatistics">
+          <property name="alternatingRowColors">
+           <bool>true</bool>
+          </property>
+          <property name="selectionBehavior">
+           <enum>QAbstractItemView::SelectRows</enum>
+          </property>
+          <property name="gridStyle">
+           <enum>Qt::SolidLine</enum>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1200</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>文件(&amp;F)</string>
+    </property>
+    <addaction name="actionOpen"/>
+    <addaction name="actionSave"/>
+    <addaction name="separator"/>
+    <addaction name="actionExit"/>
+   </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>帮助(&amp;H)</string>
+    </property>
+    <addaction name="actionAbout"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuHelp"/>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+  <action name="actionOpen">
+   <property name="text">
+    <string>打开(&amp;O)</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
+   </property>
+  </action>
+  <action name="actionSave">
+   <property name="text">
+    <string>保存(&amp;S)</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
+  </action>
+  <action name="actionExit">
+   <property name="text">
+    <string>退出(&amp;X)</string>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="text">
+    <string>关于(&amp;A)</string>
+   </property>
+  </action>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections/>
+</ui>
